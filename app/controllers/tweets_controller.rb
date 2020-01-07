@@ -2,7 +2,7 @@ class TweetsController < ApplicationController
 
   get '/tweets' do
     if session[:user_id]
-      @user = current_user
+      #@user = current_user
       @tweets = Tweet.all
       erb :'/tweets/tweets'
     else
