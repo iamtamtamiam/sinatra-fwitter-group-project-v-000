@@ -65,17 +65,17 @@ class TweetsController < ApplicationController
     #@tweet.save
     #redirect to "/tweets/#{@tweet.id}"
 
-    #if logged_in?
-      #@tweet = Tweet.find(params[:id])
+    if logged_in?
+      @tweet = Tweet.find(params[:id])
       if !params[:content].empty?
         @tweet.update(content: params[:content])
         redirect "/tweets/#{@tweet.id}"
       else
         redirect "/tweets/#{@tweet.id}/edit"
       end
-    #else
-      #redirect "/login"
-    #end
+    else
+      redirect "/login"
+    end
 
 
   end
