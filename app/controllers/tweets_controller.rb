@@ -30,9 +30,12 @@ class TweetsController < ApplicationController
     #end
 
     user = User.find_by_id(session[:user_id])
-    @tweet = Tweet.create(:content => params[:content], :user_id => user.id)
-    redirect to "/tweets/#{@tweet.id}"
-
+      if !params[:content].empty?
+        @tweet = Tweet.create(:content => params[:content], :user_id => user.id)
+        redirect to "/tweets/#{@tweet.id}"
+      else
+        redirect "/tweets/new"
+      end
     #if logged_in?
     #  @user = current_user
     #  @user.tweets << Tweet.create(:content => params[:content]) unless params[:content].empty?
